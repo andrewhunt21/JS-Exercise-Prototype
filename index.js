@@ -59,22 +59,22 @@ Person.prototype.toString = function(){
   return `${this.name}, ${this.age}`;
 }
 
-const cam = new Person('cam', 20);
-const spencer = new Person ('spencer', 28)
+const ivanelle = new Person('ivanelle', 24);
+const andrew = new Person ('andrew', 26)
 
-console.log(cam.toString());
-console.log(spencer.toString());
+console.log(ivanelle.toString());
+console.log(andrew.toString());
 
-spencer.eat('pizza');
-spencer.eat('tacos');
-spencer.eat('sandwich');
-spencer.eat('bento');
-spencer.eat('cake');
+andrew.eat('pizza');
+andrew.eat('tacos');
+andrew.eat('sandwich');
+andrew.eat('bento');
+andrew.eat('cake');
 
-console.log(spencer.stomach);
+console.log(andrew.stomach);
 
-spencer.poop();
-console.log(spencer.stomach);
+andrew.poop();
+console.log(andrew.stomach);
 
 
 /*
@@ -93,18 +93,18 @@ console.log(spencer.stomach);
 
 function Car(model, milesPerGallon) {
   this.model = model,
-  this.milesPerGallon = milesPerGallon
+  this.milesPerGallon = milesPerGallon,
   this.tank = 0,
   this.odometer = 0
 }
 
 Car.prototype.fill = function(gallons){
-  return this.tank + gallons;
+  return this.tank = this.tank + gallons;
 }
 
 const elantra = new Car ('Elantra', 35);
 
-elantra.fill(10);
+elantra.fill(12);
 console.log('task 2', elantra.tank);
 
 /*
@@ -114,18 +114,27 @@ console.log('task 2', elantra.tank);
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
- 
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age);
+  this.favoriteToy = favoriteToy;
 }
 
+Baby.prototype = Object.create(Person.prototype);
+
+Baby.prototype.play = function(){
+  return `Playing with ${this.favoriteToy}`;
+}
+
+const camille = new Baby ('Camille', 1, 'doll')
+console.log('task 3', camille.play());
 
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. window binding happens when we do not give context to the this keyword, this is not preferable
+  2. implicit binding is the most common use and it says when the this keyword is invoked look to the left of the dot
+  3. with explicit binding we pass an argument we want this to refer to. we do this using .call, .apply, or .bind
+  4. use new binding for constructor fuctions this points to the newly created object
 */
 
 
